@@ -1,0 +1,25 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+    <body>
+    <%- include("./partials/nav.ejs") %>
+
+    <div class="meals content">
+        <h2>All Meals</h2>
+
+        <% if (meals.length > 0) { %>
+        <% meals.forEach(meal => { %>
+            <a class="single" href="/all-meals/<%= meal.id %>">
+            <h3 class="title"><%= meal.title %></h3>
+            <p class="snippet"><%= meal.description %></p>
+            </a>
+        <% }) %>
+        <% } else { %>
+        <p>There are no meals to display...</p>
+        <% } %>
+        
+    </div>
+
+    <%- include("./partials/footer.ejs") %>
+    </body>
+</html>
