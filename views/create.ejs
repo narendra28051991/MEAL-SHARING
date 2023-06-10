@@ -1,0 +1,44 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+    <body>
+    <%- include("./partials/nav.ejs") %>
+
+        <div class="create-meal content">
+            <form action="/all-meals" method="POST">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
+                <label for="when">Past or Future date:</label>
+                <input type="date" id="when" name="when" required>
+                <label for="max_reservations">Reservations per person:</label>
+                <input type="number" id="max_reservations" name="max_reservations" required>
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required>
+
+                <label for="number_of_guests">Maximum number of guests:</label>
+                <input type="number" id="number_of_guests" name="number_of_guests" required>
+                <label for="contact_number">Contact number:</label>
+                <input type="number" id="contact_number" name="contact_number" required>
+                <label for="contact_name">Contact name:</label>
+                <input type="text" id="contact_name" name="contact_name" required>
+                <label for="contact_email">Contact e-mail:</label>
+                <input type="email" id="contact_email" name="contact_email" required>
+
+                <label for="r_title">Review:</label>
+                <input type="text" id="r_title" name="r_title" required>
+                <label for="r_description">Comment:</label>
+                <input type="text" id="r_description" name="r_description" required>
+                <label for="stars">Rating from 1 to 5:</label>
+                <input type="number" id="stars" name="stars" required>
+
+                <button>Submit</button>
+            </form>
+        </div>
+
+    <%- include("./partials/footer.ejs") %>
+    </body>
+</html>
