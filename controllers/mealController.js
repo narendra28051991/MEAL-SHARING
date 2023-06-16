@@ -33,9 +33,10 @@ const meal_create_get = (req, res) => {
 
 const meal_create_post = async (req, res) => {
     try {
+        const id = req.params.id;
         const body = req.body;
 
-        const id = await mealDB("meal").insert(
+        await mealDB("meal").insert(
           { title: body.title, description: body.description, location: body.location, when: body.when, max_reservations: body.max_reservations, price: body.price }
         );
 
@@ -68,10 +69,36 @@ const meal_delete = async (req, res) => {
     }
 }
 
+const meal_edit_get = async (req, res) => {
+    const id = req.params.id;
+    const meal = await mealDB("meal").where("id", id);
+    const reservation = await mealDB("reservation").where("meal_id", id);
+    const review = await mealDB("review").where("meal_id", id);
+    
+    res.render('edit', { meal: meal[0], reservation: reservation[0], review: review[0], title: 'Edit the meal' });
+}
+
+const meal_edit_post = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const body = req.body;
+        await mealDB("meal").where("id", id).update("title", body.title);
+        await mealDB("reservation").where("meal_id", id).update("number_of_guests", body.number_of_guests);
+        await mealDB("review").where("meal_id", id).update("stars", body.stars);
+
+        res.redirect('/all-meals');
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
 module.exports = {
     meal_index, 
     meal_details, 
-    meal_create_get, 
+    meal_create_get,
     meal_create_post, 
-    meal_delete
+    meal_delete,
+    meal_edit_get,
+    meal_edit_post
 }
