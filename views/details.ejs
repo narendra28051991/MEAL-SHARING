@@ -12,6 +12,9 @@
       <p>Price: <%= meal.price %> kr</p>
       <p>Reservations: <%= meal.max_reservations %></p>
     </div>
+    <a class="edit" data-doc="<%= meal.id %>" href="/all-meals/<%= meal.id %>/edit">
+      <img src="/edit.svg" alt="edit icon">
+    </a>
     <a class="delete" data-doc="<%= meal.id %>">
       <img src="/trashcan.svg" alt="delete icon">
     </a>
