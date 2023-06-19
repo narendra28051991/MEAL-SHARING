@@ -78,7 +78,7 @@ const meal_edit_get = async (req, res) => {
     res.render('edit', { meal: meal[0], reservation: reservation[0], review: review[0], title: 'Edit the meal' });
 }
 
-const meal_edit_post = async (req, res) => {
+const meal_edit_put = async (req, res) => {
     try {
         const id = req.params.id;
         const body = req.body;
@@ -100,5 +100,5 @@ module.exports = {
     meal_create_post, 
     meal_delete,
     meal_edit_get,
-    meal_edit_post
+    meal_edit_put
 }

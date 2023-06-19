@@ -9,6 +9,6 @@ router.post('/', mealController.meal_create_post);
 router.get('/:id', mealController.meal_details);
 router.delete('/:id', mealController.meal_delete);
 router.get('/:id/edit', mealController.meal_edit_get);
-router.put('/:id/edit', mealController.meal_edit_post);
+router.put('/:id/edit', mealController.meal_edit_put);
 
 module.exports = router;
