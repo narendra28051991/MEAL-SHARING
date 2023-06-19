@@ -1,4 +1,5 @@
 const express = require('express');
+
 const mealQueryController = require('./controllers/mealQueryController');
 const mealRoutes = require('./routes/mealRoutes');
 
@@ -7,6 +8,8 @@ const app = express();
 
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: true }));
+
 app.listen(5000);
 
 // register view engine
@@ -14,8 +17,6 @@ app.set('view engine', 'ejs');
 
 // static files
 app.use(express.static('public'));
-
-app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
     res.locals.path = req.path;

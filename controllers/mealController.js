@@ -86,7 +86,7 @@ const meal_edit_post = async (req, res) => {
         await mealDB("reservation").where("meal_id", id).update("number_of_guests", body.number_of_guests);
         await mealDB("review").where("meal_id", id).update("stars", body.stars);
 
-        res.redirect('/all-meals');
+        res.json({ redirect: '/all-meals' });
     }
     catch (err) {
         console.log(err);
