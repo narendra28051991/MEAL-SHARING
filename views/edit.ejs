@@ -21,5 +21,29 @@
 
     <%- include("./partials/footer.ejs") %>
 
+    <script>
+
+        const edit = document.querySelector('form');
+        edit.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            try {
+                const formData = new FormData(e.target);
+                const formDataObj = Object.fromEntries(formData.entries());
+                const endpoint = `/all-meals/${edit.dataset.doc}/edit`;
+                const response = await fetch(endpoint, {
+                                            method: 'PUT',
+                                            headers: {'Content-type': 'application/json'},
+                                            body: JSON.stringify(formDataObj)
+                                        });
+                const data = await response.json();
+                window.location.href = await data.redirect;
+            }
+            catch (err) {
+                console.log(err)
+            }
+        });
+    
+    </script>
+
     </body>
 </html>

@@ -77,11 +77,27 @@ const meal_edit_get = async (req, res) => {
     res.render('edit', { meal: meal[0], reservation: reservation[0], review: review[0], title: 'Edit the meal' });
 }
 
+const meal_edit_put = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const body = req.body;
+        await mealDB("meal").where("id", id).update("title", body.title);
+        await mealDB("reservation").where("meal_id", id).update("number_of_guests", body.number_of_guests);
+        await mealDB("review").where("meal_id", id).update("stars", body.stars);
+
+        res.json({ redirect: '/all-meals' });
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
 module.exports = {
     meal_index, 
     meal_details, 
     meal_create_get, 
     meal_create_post, 
     meal_delete,
-    meal_edit_get
+    meal_edit_get,
+    meal_edit_put
 }
